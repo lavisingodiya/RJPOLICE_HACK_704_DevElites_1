@@ -8,11 +8,11 @@ user: admin@gmail.com
 pass: admin
 
 
-Student : 
+User : 
 
-user: test@gmail.com
-pass: test
+user: lavi@gmail.com
+pass: lavi
 
-Teacher 
+Station 
 Sanjeevtech2@gmail.com
 sanjeev 
