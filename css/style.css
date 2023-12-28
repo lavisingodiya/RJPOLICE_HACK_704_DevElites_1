@@ -1,0 +1,24 @@
+/* styles.css */
+/* Add your custom styles here */
+
+/* Updated navigation bar styles */
+nav.navbar {
+    background-color: #3498db;
+    border: none;
+    border-radius: 0;
+}
+
+/* ... Other styles ... */
+
+.additional-features {
+    margin-top: 20px;
+}
+
+.navbar-fixed-bottom {
+    padding: 15px;
+    height: 40px;
+    background: #66CCFF;
+    color: #FFFFFF;
+}
+
+/* Add more styles as needed */
