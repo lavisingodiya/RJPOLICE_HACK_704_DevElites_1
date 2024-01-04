@@ -1,21 +1,17 @@
 <?php
-	include('../dbconfig.php');
-	session_start();
-	extract($_POST);
-	if(isset($login))
-	{
-$que=mysqli_query($conn,"select user and pass from admin where user='$email' and pass='$pass'");
-		$row=mysqli_num_rows($que);
-		if($row)
-			{	
-				$_SESSION['user']=$email;
-				header('location:dashboard.php');
-			}
-		else
-			{
-				$err="<font color='red'>Wrong Email or Password !</font>";
-			}
-	}
+include('../dbconfig.php');
+session_start();
+extract($_POST);
+if (isset($login)) {
+    $que = mysqli_query($conn, "select user and pass from admin where user='$email' and pass='$pass'");
+    $row = mysqli_num_rows($que);
+    if ($row) {
+        $_SESSION['user'] = $email;
+        header('location:dashboard.php');
+    } else {
+        $err = "<font color='red'>Wrong Email or Password !</font>";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -65,24 +61,27 @@ $que=mysqli_query($conn,"select user and pass from admin where user='$email' and
                         <form method="post">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" name="email" type="email" autofocus required placeholder="E-mail">
+                                    <input class="form-control" name="email" type="email" autofocus required
+                                        placeholder="E-mail">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="pass" type="password" required>
+                                    <input class="form-control" placeholder="Password" name="pass" type="password"
+                                        required>
                                 </div>
-                                
-                                
-								<div class="form-group">
-                                    <input name="login" type="submit" value="Login" class="btn btn-lg btn-success btn-block">
+
+
+                                <div class="form-group">
+                                    <input name="login" type="submit" value="Login"
+                                        class="btn btn-lg btn-success btn-block">
                                 </div>
-								
-								<div class="form-group">
+
+                                <div class="form-group">
                                     <label>
-                                        <?php echo @$err;?>
+                                        <?php echo @$err; ?>
                                     </label>
                                 </div>
-								
-                                
+
+
                             </fieldset>
                         </form>
                     </div>

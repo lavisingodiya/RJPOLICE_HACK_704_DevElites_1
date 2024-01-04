@@ -1,8 +1,8 @@
-<?php 
-	include('../dbconfig.php');
-	session_start();
-	
-	unset($_SESSION['user']);
-	header('location:../index.php');
+<?php
+include('../dbconfig.php');
+session_start();
+
+unset($_SESSION['user']);
+header('location:../index.php');
 
 ?>
