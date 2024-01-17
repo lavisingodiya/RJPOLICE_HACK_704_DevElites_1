@@ -124,7 +124,7 @@ if (isset($save)) {
 				</tr>
 
 				<tr>
-					<td>Select Your Semester</td>
+					<td>Select Your Area Type</td>
 					<Td><select name="sem" class="form-control" required>
 
 							<option>Rural</option>
