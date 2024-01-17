@@ -59,7 +59,7 @@ if (isset($save)) {
 		$dob = $yy . "-" . $mm . "-" . $dd;
 
 		//hobbies
-		//$hob=implode(",",$hob);
+		//$hob = implode(",", $hob);
 
 		//image
 		$imageName = $_FILES['img']['name'];
@@ -69,7 +69,7 @@ if (isset($save)) {
 		$pass = md5($p);
 
 
-		$query = "insert into user values('','$n','$e','$pass','$mob','$sem','$gen','$imageName','$dob',now())";
+		$query = "insert into user values('','$n','$e','$pass','$mob','$pro','$sem','$gen','$imageName','$dob',now())";
 		mysqli_query($conn, $query);
 
 		//upload image
@@ -93,9 +93,7 @@ if (isset($save)) {
 	<div class="col-sm-8">
 		<form method="post" enctype="multipart/form-data">
 			<table class="table table-bordered" style="margin-bottom:50px">
-				
 					<h2 align="center">Registration Form</h2>
-				<br>
 				<Tr>
 					<Td colspan="2"><?php echo @$err; ?></Td>
 				</Tr>
@@ -119,20 +117,14 @@ if (isset($save)) {
 					<Td><input type="text" name="mob" class="form-control" required /></td>
 				</tr>
 
-				<!--<tr>
-					<td>Select Your Programme</td>
-					<Td><select name="pro" class="form-control" required>
-					
-					<option>BCA</option>
-					<option>MCA</option>
-					<option>B.Tech</option>
-					<option>M.Tech</option>
-					</select>
+				<tr>
+					<td>Select Your Aadhar Number</td>
+					<Td><input type="text" name="pro" class="form-control" required>
 					</td>
-				</tr>-->
+				</tr>
 
 				<tr>
-					<td>Select Your Region type: </td>
+					<td>Select Your Semester</td>
 					<Td><select name="sem" class="form-control" required>
 
 							<option>Rural</option>
@@ -152,10 +144,10 @@ if (isset($save)) {
 				<!--<tr>
 					<td>Choose Your hobbies</td>
 					<Td>
-					Reading<input value="reading" type="checkbox" name="hob[]"/>
-					Singing<input value="singin" type="checkbox" name="hob[]"/>
-					
-					Playing<input value="playing" type="checkbox" name="hob[]"/>
+						Reading<input value="reading" type="checkbox" name="hob[]" />
+						Singing<input value="singin" type="checkbox" name="hob[]" />
+
+						Playing<input value="playing" type="checkbox" name="hob[]" />
 					</td>
 				</tr>-->
 
