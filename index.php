@@ -104,7 +104,7 @@ require('dbconfig.php'); ?>
             </div>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="Content/images/1080x360.jpeg" class="d-block w-100" alt="...">
+                    <img src="Content/images/banner1.jpg" class="d-block w-100" alt="...">
                 </div>
                 <div class="carousel-item">
                     <img src="images/rjbaner.png" class="d-block w-100" alt="...">
