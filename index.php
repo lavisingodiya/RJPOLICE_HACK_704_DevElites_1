@@ -1,279 +1,499 @@
 <?php
 session_start();
- require('dbconfig.php'); ?>
-<!DOCTYPE html>
+require('dbconfig.php'); ?>
+
+<!doctype html>
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-	<title>Online feedback System</title>
-	
-	<!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/modern-business.css" rel="stylesheet">
-
-    <link rel="stylesheet" href="css/style.css">
+    <title>Police Feedback | Rajasthan Police</title>
+    <link rel="icon" href="Content/images/favicon.ico" type="image/x-icon">
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/lib/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="Content/css/StyleSheet.css" rel="stylesheet" />
+    <link href="Content/lib/sweetalert/sweetalert.css" rel="stylesheet" />
 
 
-    <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Online Feedback System</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <!-- You may need to update the Bootstrap version based on your project's requirements -->
+    <script>
+        function myFunction() {
+            document.getElementById('modalOverlay').style.display = 'none'
+        }
+    </script>
+
     <style>
-        /* Add your custom styles here */
-
-        /* Updated navigation bar styles */
-        nav.navbar {
-            background-color: #3498db; /* Updated background color */
-            border: none; /* Remove border */
-            border-radius: 0; /* Remove border radius */
-        }
-
-        .navbar-brand {
-            color: #ffffff !important; /* Brand text color */
-        }
-
-        .navbar-nav > li > a {
-            color: #ffffff !important; /* Nav link text color */
-        }
-
-        .navbar-nav > li > a:hover,
-        .navbar-nav > li > a:focus {
-            background-color: #2980b9; /* Nav link hover color */
-        }
-
-        .navbar-toggle {
-            border-color: #ffffff; /* Toggle button border color */
-        }
-
-        .navbar-toggle:hover,
-        .navbar-toggle:focus {
-            background-color: #2980b9; /* Toggle button hover color */
-        }
-
-        .navbar-collapse {
-            border: none; /* Remove border */
-        }
-
-        .navbar-nav > li > a,
-        .navbar-nav > li > a:hover,
-        .navbar-nav > li > a:focus {
-            border-bottom: 2px solid transparent; /* Remove bottom border on nav links */
-        }
     </style>
 
 </head>
 
+
 <body>
 
-   <!-- Navigation -->
-   <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+    <?php
+    @$info = $_GET['info'];
+    if ($info != "") {
+
+        if ($info == "about") {
+            include('about.php');
+        } else if ($info == "contact") {
+            include('contact.php');
+        } else if ($info == "login") {
+            include('login.php');
+        } else if ($info == "faculty_login") {
+            include('faculty_login.php');
+        } else if ($info == "registration") {
+            include('registration.php');
+        }
+    } else {
+    ?>
+
+
+
+        <!-- NAVBAR -->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container">
+                <a class="navbar-brand d-flex" href="index.php">
+                    <img src="images/rjlogo.png" alt="Emblem image" />
+                    <div class="ms-1">
+                        <h4>Rajasthan</h4>
+                        <h4>Police</h4>
+                    </div>
+                </a>
+
+                <img src="images/rjlogo2.png" alt="G-20 Logo" class="G20-logo" style="width: 9%;" />
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="index.php">Online Feedback System</a>
-            </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link Navactive" id="Home" aria-current="page" href="index.php">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="About" href="index.php?info=about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.php?info=registration" id="Service" class="nav-link">Registration</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.php?info=login" id="Service" class="nav-link">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.php?info=faculty_login" id="Service" class="nav-link">Station Login </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="admin" id="Service" class="nav-link">Admin Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.php?info=contact" id="Contact" class="nav-link">Contact</a>
+                        </li>
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="index.php?info=about">About</a></li>
-                    <li><a href="index.php?info=registration">Registration</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="index.php?info=login">User</a></li>
-                            <li><a href="index.php?info=faculty_login">Police</a></li>
-                            <li><a href="admin">Admin</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="index.php?info=contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Your PHP code goes here -->
-
-<?php 
-					@$info=$_GET['info'];
-					if($info!="")
-					{
-											
-						 if($info=="about")
-						 {
-						 include('about.php');
-						 }
-						
-						
-						
-						
-
-						 
-						 else if($info=="contact")
-						 {
-						 include('contact.php');
-						 }
-						
-						
-						 
-						 
-						 else if($info=="login")
-						 {
-						 include('login.php');
-						 }
-						 
-						  else if($info=="faculty_login")
-						 {
-						 include('faculty_login.php');
-						 }
-						 
-						 
-						 else if($info=="registration")
-						 {
-						 	include('registration.php');
-						 }
-					}
-					else
-					{
-				?>
-		<!-- Slider Start -->
-<header id="myCarousel" class="carousel slide">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-    </ol>
-
-    <!-- Wrapper for slides -->
-    <div class="carousel-inner">
-        <!-- Slide 1 -->
-        <div class="item active">
-            <div class="fill" style="background-image:url('images/img1.jpg');"></div>
-            <div class="carousel-caption">
-                <!-- Add any captions or content for the first slide here -->
-            </div>
-        </div>
-
-        <!-- Slide 2 -->
-        <div class="item">
-            <div class="fill" style="background-image:url('images/img4.jpeg');"></div>
-            <div class="carousel-caption">
-                <!-- Add any captions or content for the second slide here -->
-            </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="item">
-            <div class="fill" style="background-image:url('images/img3.jpg');"></div>
-            <div class="carousel-caption">
-                <!-- Add any captions or content for the third slide here -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Controls -->
-    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" href="#myCarousel" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
-</header>
-<!-- Slider End -->
-		
-	
-	
-   <!-- Page Content -->
-<div class="container">
-
-<div class="row">
-    <div class="col-lg-12">
-
-        <div class="col-sm-10" style="margin-top: 60px; margin-bottom: 80px;">
-            <h2>About Police Feedback System</h2>
-            <p><b>Your Voice Matters:</b> Shaping a Safer Community Together</p>
-
-            <p>Building trust and fostering a strong relationship between the police and the community is at the heart of everything we do.</p>
-            <p>Your feedback is essential in helping us achieve this goal and continuously improve the quality of service we provide.</p>
-            <p>We encourage you to share your experiences, both positive and negative, through our Police Feedback System.</p>
-
-            <ul>
-                <li>Provide feedback on your interactions with our officers.
-                    <ul>
-                        <li>Did they respond promptly?</li>
-                        <li>Were they courteous and professional?</li>
                     </ul>
-                </li>
-                <li>Report concerns about specific incidents or issues.</li>
-                <li>Share your insights on how we can better address community needs and prevent crime.</li>
-                <li>Offer suggestions for improvement.
-                    <ul>
-                        <li>We value your ideas on how we can enhance our services and make our community safer for everyone.</li>
-                    </ul>
-                </li>
-            </ul>
 
-            <p>Your feedback is anonymous and will be used to identify areas for improvement, track progress, and ensure that we are meeting your expectations.</p>
-
-            <p>Together, we can build a stronger, safer community based on mutual respect and understanding.</p>
-
-            <p><a href="link-to-police-feedback-system">Click here to access the Police Feedback System.</a></p>
-
-            <p>We appreciate your time and commitment to making our community a better place.</p>
-
-            <div class="additional-features">
-                <h3>Additional Features:</h3>
-                <ul>
-                    <li>Consider including a brief testimonial from a satisfied community member about their positive experience using the feedback system.</li>
-                    <li>Add links to other relevant resources, such as information on crime prevention tips, reporting procedures, and community outreach programs.</li>
-                    <li>Ensure the website is accessible and user-friendly for all, regardless of technical ability.</li>
-                </ul>
+                </div>
             </div>
+        </nav>
+
+        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="Content/images/1080x360.jpeg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/rjbaner.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="images/bannerfinal.png" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
 
-    </div>
-</div>
-</div>
+        <!-- Render Section -->
+        <div id="container">
+            <a name="skipcontent" id="skipcontent"></a>
 
-				<?php } ?>
+
+
+
+            <!-- SCETION SMART POLICING -->
+            <div class="container-fluid my-4">
+                <div class="row">
+
+                    <div class="col-10 mx-auto">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <img src="images/banner_digital2.png" alt="Image" class="img-fluid Radius py-2" />
+                            </div>
+                            <div class="col-md-6 ScroolDiv" style="text-align: justify; text-justify: inter-word;">
+                                <h3 class="text-center text-blue py-3">IMPORTANT DOCUMENTS</h3>
+                                <div class="row justify-content-center gap-4">
+                                    <div class="col-lg-3 w-27 col-md-5 " title="CyberSecurity">
+                                        <a href="https://police.rajasthan.gov.in/uploads/Tips_for_Cyber_Security_19fdadb7de.pdf" target="_blank" onclick="return confirm('This Service is available for authorized users only. To Continue click ok, to cancel click cancel');" class="shadow-lg  bg-white text-center rounded text-decoration-none d-block">
+                                            <img src="images/cyber.png" class="img-fluid w-50 py-2" />
+                                            <p class="text-main fw-bold mb-0 pb-2 text-12">साइबर सुरक्षा के लिए टिप्स</p>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 w-27 col-md-5 " title="ForigenInstructns">
+                                        <a href="https://police.rajasthan.gov.in/uploads/Tips_For_Foreigners_695a39495d.pdf" target="_blank" class="shadow-lg  bg-white text-center rounded text-decoration-none d-block" onclick="return confirm('This Service is available for authorized users only. To Continue click ok, to cancel click cancel');">
+                                            <img src="images/forigen.png" class="img-fluid w-40 py-2" />
+                                            <p class="text-main fw-bold mb-0 pb-2 text-12">विदेशियों के लिए दिशा-निर्देश</p>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 w-27 col-md-5 " title="LocalPeopleTips">
+                                        <a href="https://police.rajasthan.gov.in/uploads/Tips_for_Local_Residents_Women_1c1ab3e22b.pdf" target="_blank" class="shadow-lg  bg-white text-center rounded text-decoration-none d-block" onclick="return confirm('This Service is available for authorized users only. To Continue click ok, to cancel click cancel');">
+                                            <img src="images/local.png" class="img-fluid w-50 py-2" />
+                                            <p class="text-main fw-bold mb-0 pb-2 text-12">स्थानीय निवासियों/महिलाओं के लिए टिप्स</p>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 w-27 col-md-5 " title="OldPeople">
+                                        <a href="https://police.rajasthan.gov.in/uploads/Tips_For_Senior_Citizens_ce4c651155.pdf" target="_blank" class="shadow-lg  bg-white text-center rounded text-decoration-none d-block" onclick="return confirm('This Service is available for authorized users only. To Continue click ok, to cancel click cancel');">
+                                            <img src="images/old.png" class="img-fluid w-75 py-2" />
+                                            <p class="text-main fw-bold mb-0 pb-2 text-12">वरिष्ठ नागरिकों के लिए युक्तियाँ</p>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 w-27 col-md-5 " title="TouristsTips">
+                                        <a href="https://police.rajasthan.gov.in/uploads/Tips_For_Tourists_8f2c0c5477.pdf" target="_blank" class="shadow-lg  bg-white text-center rounded text-decoration-none d-block" onclick="return confirm('This Service is available for authorized users only. To Continue click ok, to cancel click cancel');">
+                                            <img src="images/tourist.png" class="img-fluid w-40 py-2" />
+                                            <p class="text-main fw-bold mb-0 pb-2 text-12" style="margin-top:10px!important;">पर्यटकों के लिए टिप्स</p>
+                                        </a>
+                                    </div>
+                                    <div class="col-lg-3 w-27 col-md-5 " title="ForigenPeopleTips">
+                                        <a href="https://police.rajasthan.gov.in/uploads/Foreigners_Tips_1205a9b6ae.pdf" target="_blank" class="shadow-lg  bg-white text-center rounded text-decoration-none d-block" onclick="return confirm('This Service is available for authorized users only. To Continue click ok, to cancel click cancel');">
+                                            <img src="images/foreignpeople.png" class="img-fluid w-75 py-2 w-m-27" />
+                                            <p class="text-main fw-bold mb-0 pb-2 text-12">विदेशियों के लिए टिप्स</p>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-    </div>
-    <!-- /.container -->
-	
-	<div class="navbar-fixed-bottom nav navbar-inverse text-center" style="padding:15px;height:40px; background:#66CCFF">
-		<span style="color:#FFFFFF">Developed By	<a href="#">Team DevElites</a> </span>
-	</div>
-    <!-- jQuery -->
-    <script src="css/jquery.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="css/bootstrap.min.js"></script>
+            <!-- SCETION POLICY SCETION POLICY -->
+            <div class="container-fluid my-4">
+                <div class="row">
 
-    <!-- Script to Activate the Carousel -->
+                    <div class="col-10 mx-auto">
+                        <div class="row">
+
+
+                            <!-- SERVICES FOR CITIZEN -->
+                            <div class="col-md-5">
+
+                                <div class="Public-policy">
+                                    <h3 class="text-main">PROCESS OF FILING AN FIR</h3>
+                                    <h5 class="text-main">⭐ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;एफआईआर दर्ज करने की प्रक्रिया</h5>
+                                    <a class="d-block">
+                                        <i class="fa fa-pen-square me-2 text-main"></i><b>पुलिस स्टेशन से संपर्क करें:</b>
+
+                                        चाहे अपराध कहीं भी हुआ हो, निकटतम पुलिस स्टेशन पर जाएँ। आप "भारतीय पुलिस आपके कॉल पर" ऐप का उपयोग करके आस-पास के स्टेशन ढूंढ सकते हैं।
+                                    </a>
+
+                                    <a class="d-block">
+                                        <i class="fa fa-pen-square me-2 text-main"></i><b>ड्यूटी ऑफिसर से मिलें:</b>
+
+                                        ड्यूटी पर तैनात अधिकारी को अपनी स्थिति स्पष्ट करें। अपराध की प्रकृति और यह कब/कहां हुआ, इसके बारे में स्पष्ट और संक्षिप्त रहें।
+
+                                    </a>
+                                    <a class="d-block">
+                                        <i class="fa fa-pen-square me-2 text-main"></i> <b>अपराध का विवरण प्रदान करें:</b>
+
+                                        घटना को कालानुक्रमिक रूप से बताएं, जिसमें संदिग्धों, गवाहों और उपलब्ध साक्ष्य जैसे विवरण शामिल हों। यदि आप पहले से तैयार हैं तो आप एक लिखित शिकायत प्रदान कर सकते हैं।
+
+                                    </a>
+                                    <a class="d-block">
+                                        <i class="fa fa-pen-square me-2 text-main"></i> <b> एफआईआर पंजीकरण:</b>
+
+                                        अधिकारी आपकी शिकायत को स्टेशन की दैनिक डायरी (डीडी)/जनरल डायरी (जीडी) में दर्ज करेगा। यदि अपराध संज्ञेय है (जैसे, चोरी, हमला), तो तुरंत एफआईआर दर्ज की जानी चाहिए। गैर-संज्ञेय अपराधों के लिए, अधिकारी एफआईआर दर्ज करने से पहले प्रारंभिक जांच कर सकता है।
+
+                                    </a>
+                                    <a class="d-block">
+                                        <i class="fa fa-pen-square me-2 text-main"></i> <b>एफआईआर सामग्री:</b>
+
+                                        एफआईआर में आपका नाम, पता, अपराध की प्रकृति, तारीख/समय/स्थान और संदिग्धों/गवाहों का विवरण जैसे विवरण शामिल होंगे। आपको अपने रिकॉर्ड के लिए एफआईआर की एक प्रति प्राप्त करने का अधिकार है।
+
+                                    </a>
+
+                                    <div class="mb-3 d-flex align-items-center">
+                                        <span class="field-validation-valid text-danger" data-valmsg-for="State" data-valmsg-replace="true"></span>
+                                    </div>
+
+                                    <a class="d-block">
+                                        <i class="fa fa-pen-square me-2 text-main"></i><b> अतिरिक्त बिंदु:</b>
+
+                                        आप मौखिक या लिखित रूप से एफआईआर दर्ज कर सकते हैं।<br>
+                                        - यदि पुलिस एफआईआर दर्ज करने से इनकार करती है, तो आप किसी वरिष्ठ अधिकारी से संपर्क कर सकते हैं या मजिस्ट्रेट के पास शिकायत दर्ज करा सकते हैं।<br>
+                                        - आप कुछ राज्यों में विशिष्ट अपराधों के लिए ऑनलाइन एफआईआर भी दर्ज कर सकते हैं।
+                                    </a>
+
+                                </div>
+                            </div>
+                            <!-- SERVICES FOR POLICE -->
+                            <div class="col-md-7 bg-img">
+                                <img src="images/bannerll.png" alt="Image" class="img-fluid Radius py-2" />
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
+
+
+
+        </div>
+
+        <!-- SLIDER SLIDER -->
+        <div class="container-fluid px-0">
+            <section class="company_logo_slides">
+                <div class="containerSLider">
+                    <div id="clients">
+                        <div class="clients-wrap">
+
+                            <ul id="clients-list" class="">
+
+                                <li>
+                                    <a class="text-decoration-none" href='https://twitter.com/PoliceRajasthan' target="_blank">
+                                        <div>
+                                            <img src="images/x.png" alt="Logo" />
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="text-decoration-none" href='https://www.instagram.com/PoliceRajasthan/' target="_blank">
+                                        <div>
+                                            <img src="images/instagram.png" alt="Logo" />
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="text-decoration-none" href='https://www.facebook.com/PoliceRajasthan/' target="_blank">
+                                        <div>
+                                            <img src="images/facebook.png" alt="Logo" />
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="text-decoration-none" href='https://www.youtube.com/channel/UCWfOt35Rs1HvGDMo5J-jwcg' target="_blank">
+                                        <div>
+                                            <img src="images/youtube.png" alt="Logo" />
+                                        </div>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="text-decoration-none" href='https://twitter.com/RajPoliceHelp' target="_blank">
+                                        <div>
+                                            <img src="images/x.png" alt="Logo" />
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="text-decoration-none" href='https://police.rajasthan.gov.in/new/dashboard' target="_blank">
+                                        <div>
+                                            <img src="images/rjlogox.png" alt="Logo" />
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+        </div>
+
+
+
+
+        <!-- FOOTER -->
+        <div class="container-fluid Copyright text-center">
+
+            <small class="text-white">
+                &copy; Created with ❤️ from team DevElites
+                <a href='https://github.com/lavisingodiya/RJPOLICE_HACK_704_DevElites_1' class="btn btn-warning ms-2 pb-0 pt-0" style="background-color: #f0941e !important; border-color: #f0941e !important;"><b>Visit Us
+                    </b></a>
+            </small>
+        </div>
+        </footer>
+
+
+        <!-- MODAL MODAL -->
+
+
+
+        <script src="Scripts/bootstrap.bundle.min.js"></script>
+        <script src="Content/js/jquery3.7.0.min.js"></script>
+        <script src="Content/lib/font-awesome/js/all.min.js"></script>
+        <script src="Content/lib/sweetalert/sweetalert.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                debugger
+
+                $(".navbar-nav  li a ").click(function() {
+                    var id = $(this);
+
+                    $(".navbar-nav li a").removeClass("active");
+                    $(id).addClass("active");
+                    sessionStorage.setItem("mylink", $(id).text());
+                });
+
+                var mylink = sessionStorage.getItem('mylink');
+
+                if (mylink !== null && mylink !== "Home") {
+                    $("li a:contains('" + "Home" + "')").removeClass("Navactive");
+
+                    $("li a:contains('" + mylink + "')").addClass("Navactive");
+
+                } else {
+                    let id = "Home"
+                    $(id).addClass("Navactive");
+                }
+            });
+
+            //if (mylink !== null) {
+
+            //    $("li a:contains('" + mylink + "')").addClass("Navactive");
+            //} else {
+            //    let id = "Home"
+            //    $(id).addClass("Navactive");
+            //}
+
+
+            // zoom in or outDPPVideo
+            var $affectedElements = $("p, a, li, span, h1, h2, h3, h4, h5, h6"); // Can be extended, ex. $("div, p, span.someClass")
+
+            // Storing the original size in a data attribute so size can be reset
+            $affectedElements.each(function() {
+                var $this = $(this);
+                $this.data("orig-size", $this.css("font-size"));
+            });
+
+            $("#iFont").click(function() {
+                changeFontSize(1);
+            })
+
+            $("#dFont").click(function() {
+                changeFontSize(-1);
+            })
+
+            $("#rFont").click(function() {
+                $affectedElements.each(function() {
+                    var $this = $(this);
+                    $this.css("font-size", $this.data("orig-size"));
+                });
+            })
+
+            function changeFontSize(direction) {
+                $affectedElements.each(function() {
+                    var $this = $(this);
+                    $this.css("font-size", parseInt($this.css("font-size")) + direction);
+                });
+            }
+
+
+
+            /*  SLIDER SCRIPT*/
+            $(function() {
+                var $clientcarousel = $('#clients-list');
+                var clients = $clientcarousel.children().length;
+                var clientwidth = (clients * 250); // 140px width for each client item
+                $clientcarousel.css('width', clientwidth);
+
+                var rotating = true;
+                var clientspeed = 0;
+                var seeclients = setInterval(rotateClients, clientspeed);
+
+                $(document).on({
+                    mouseenter: function() {
+                        rotating = false; // turn off rotation when hovering
+                    },
+                    mouseleave: function() {
+                        rotating = true;
+                    }
+                }, '#clients');
+
+                function rotateClients() {
+                    if (rotating != false) {
+                        var $first = $('#clients-list li:first');
+                        $first.animate({
+                            'margin-left': '-220px'
+                        }, 5000, "linear", function() {
+                            $first.remove().css({
+                                'margin-left': '0px'
+                            });
+                            $('#clients-list li:last').after($first);
+                        });
+                    }
+                }
+            });
+        </script>
+
+    <?php } ?>
+
     <script>
-    $('.carousel').carousel({
-        interval: 5000 //changes the speed
-    })
+        $('#ddlState').on('change', function(e) {
+
+            var state = $(this).find(":checked").text();
+            console.log(state);
+
+            $.ajax({
+                type: 'Post',
+                url: '/DigitalPolice/GetUrlByState',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({
+                    'state': state
+                }),
+                success: function(data) {
+                    if (data.length != 0) {
+                        if (confirm("You are being redirected to State Citizen Portal. To continue click Continue. To cancel click Cancel.") == true) {
+
+                            // var url = data;
+                            // console.log(url);
+                            // alert(url);
+                            // window.open(url, '_blank');
+                            e.preventDefault();
+                            var url = data;
+                            window.open(url);
+
+                        }
+                    }
+
+                },
+                failure: function() {
+                    location.reload(true);
+                }
+            });
+        });
     </script>
+
 
 </body>
 

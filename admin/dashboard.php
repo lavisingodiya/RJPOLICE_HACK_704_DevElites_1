@@ -1,8 +1,7 @@
 <?php
 session_start();
-if(!isset($_SESSION['user']))
-{
-header('location:index.php');
+if (!isset($_SESSION['user'])) {
+    header('location:index.php');
 }
 include('../dbconfig.php');
 
@@ -27,7 +26,7 @@ include('../dbconfig.php');
     <!-- MetisMenu CSS -->
     <link href="../css/metisMenu.min.css" rel="stylesheet">
 
-    
+
     <!-- Custom CSS -->
     <link href="../css/sb-admin-2.css" rel="stylesheet">
 
@@ -65,11 +64,12 @@ include('../dbconfig.php');
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        
-                        <li><a href="dashboard.php?info=update_password"><i class="fa fa-gear fa-fw"></i>Change Password</a>
+
+                        <li><a href="dashboard.php?info=update_password"><i class="fa fa-gear fa-fw"></i>Change
+                                Password</a>
                         </li>
                         <li class="divider"></li>
                         <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -87,56 +87,60 @@ include('../dbconfig.php');
                         <li>
                             <a href="dashboard.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
-                        
-						<li>
+
+                        <li>
                             <a href="#"><i class="fa fa-user fa-fw"></i>Station<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="dashboard.php?info=add_faculty"><i class="fa fa-plus fa-fw"></i> Add Station</a>
+                                    <a href="dashboard.php?info=add_faculty"><i class="fa fa-plus fa-fw"></i> Add
+                                        Station</a>
                                 </li>
-								 <li>
-                                    <a href="dashboard.php?info=show_faculty"><i class="fa fa-eye"></i> Manage Station</a>
-                                </li>                           
-							</ul>
+                                <li>
+                                    <a href="dashboard.php?info=show_faculty"><i class="fa fa-eye"></i> Manage
+                                        Station</a>
+                                </li>
+                            </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        
-						
-						<li>
+
+
+                        <li>
                             <a href="#"><i class="fa fa-user fa-fw"></i>User<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
-                                
-								 <li>
-                                    <a href="dashboard.php?info=display_student"><i class="fa fa-eye"></i> Manage User</a>
-                                </li> 
-							             
-							</ul>
+
+                                <li>
+                                    <a href="dashboard.php?info=display_student"><i class="fa fa-eye"></i> Manage
+                                        User</a>
+                                </li>
+
+                            </ul>
                         </li>
-						
-						
-		
-		<!-- feedback-->
-		<li>
-         <a href="#"><i class="fa fa-user fa-book"></i>Feedback<span class="fa arrow"></span></a>
-           <ul class="nav nav-second-level">
-                             
-<li><a href="dashboard.php?info=feedback"><i class="fa fa-eye"></i> feedback</a></li>
-<li><a href="dashboard.php?info=feedback_average"><i class="fa fa-eye"></i> feedback Average</a></li>
-	 
-							             
-							</ul>
+
+
+
+                        <!-- feedback-->
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-book"></i>Feedback<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+
+                                <li><a href="dashboard.php?info=feedback"><i class="fa fa-eye"></i> feedback</a></li>
+                                <li><a href="dashboard.php?info=feedback_average"><i class="fa fa-eye"></i> feedback
+                                        Average</a></li>
+
+
+                            </ul>
                         </li>
-		<!--feedback end-->
-						
-					
-						
-						
-		<li>
-			<a href="dashboard.php?info=contact"><i class="fa fa-eye"></i> Contact us</a>
-		</li>
-			   
-				   
-				        
+                        <!--feedback end-->
+
+
+
+
+                        <li>
+                            <a href="dashboard.php?info=contact"><i class="fa fa-eye"></i> Contact us</a>
+                        </li>
+
+
+
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
@@ -147,71 +151,40 @@ include('../dbconfig.php');
         <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                   
-                	<?php 
-								@$id=$_GET['id'];
-								@$info=$_GET['info'];
-								if($info!="")
-								{
-									if($info=="add_faculty")
-										{
-											include('add_faculty.php');
-										}
-										
-									elseif($info=="show_faculty")
-										{
-											include('show_faculty.php');
-										}
-										
-										
-									elseif($info=="edit_faculty")
-										{
-											include('edit_faculty.php');
-										}	
-										
-									elseif($info=="display_student")
-										{
-											include('display_student.php');
-										}
-									
-										
-										
-									elseif($info=="contact")
-										{
-											include('contact.php');
-										}	
-									elseif($info=="feedback")
-										{
-											include('feedback.php');
-										}
-										elseif($info=="feedback_average")
-										{
-											include('feedback_average.php');
-										}		
-										
-										
-									
-										
-										
-										
-										else if($info=="update_password")
-										{
-										include('update_password.php');
-										}
-									
-								}
-								else
-								{
-								include('dashboard_home.php');
-								}
-							
-							
-							?>
-				
-				</div>
+
+                    <?php
+                    @$id = $_GET['id'];
+                    @$info = $_GET['info'];
+                    if ($info != "") {
+                        if ($info == "add_faculty") {
+                            include('add_faculty.php');
+                        } elseif ($info == "show_faculty") {
+                            include('show_faculty.php');
+                        } elseif ($info == "edit_faculty") {
+                            include('edit_faculty.php');
+                        } elseif ($info == "display_student") {
+                            include('display_student.php');
+                        } elseif ($info == "contact") {
+                            include('contact.php');
+                        } elseif ($info == "feedback") {
+                            include('feedback.php');
+                        } elseif ($info == "feedback_average") {
+                            include('feedback_average.php');
+                        } else if ($info == "update_password") {
+                            include('update_password.php');
+                        }
+
+                    } else {
+                        include('dashboard_home.php');
+                    }
+
+
+                    ?>
+
+                </div>
                 <!-- /.col-lg-12 -->
             </div>
-            
+
             <!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
@@ -228,7 +201,7 @@ include('../dbconfig.php');
     <!-- Metis Menu Plugin JavaScript -->
     <script src="../css/metisMenu.min.js"></script>
 
-  
+
     <!-- Custom Theme JavaScript -->
     <script src="../css/sb-admin-2.js"></script>
 
